@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
+# Third-party libraries
 import requests
 
+# Python standard libraries
 import argparse
 from ConfigParser import ConfigParser
 
+# Static Constants
 URL = "http://slack.com/api/chat.postMessage"
 CFG_FILE = "auth.cfg"
 CFG = ConfigParser()
@@ -19,11 +22,25 @@ BASE_PARAMS = {
 
 
 def post_chat(params):
+    """
+    Posts a configured message to the given URL.
+    params:
+        dict of token, channel, text, and username
+    """
     resp = requests.post(URL, params=params)
     return resp
 
 
 def form_params(msg, chan, auth):
+    """
+    Builds a complete params dict.
+    msg:
+        String text to post to slack
+    chan:
+        Channel to post to
+    token:
+        Auth token for the slack group being posted to
+    """
     built_params = BASE_PARAMS.copy()
     built_params['text'] = msg
     built_params['channel'] = chan
@@ -33,6 +50,9 @@ def form_params(msg, chan, auth):
 
 
 def make_argument_parser():
+    """
+    Builds a command-line argument parser using Python's argparse
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--channel', default='#borttorst',
                         help='Which channel to post to, like #general')
