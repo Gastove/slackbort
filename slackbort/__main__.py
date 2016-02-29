@@ -1,0 +1,3 @@
+import slackbort
+
+slackbort.main()
