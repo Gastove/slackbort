@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-# Third-party libraries
-import requests
-
 # Python standard libraries
 import argparse
 from ConfigParser import ConfigParser
+
+# Third-party libraries
+import requests
 
 # Static Constants
 URL = "http://slack.com/api/chat.postMessage"
